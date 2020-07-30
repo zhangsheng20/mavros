@@ -221,7 +221,7 @@ private:
 		imu_enu_msg->angular_velocity_covariance.elems[0]=0;
 		imu_enu_msg->linear_acceleration_covariance.elems[0]=0;
 		imu_enu_msg->orientation_covariance.elems[0]=0;
-		imu_enu_msg->linear_acceleration.z=9.8;
+		imu_enu_msg->linear_acceleration.z=9.7;
 		imu_pub.publish(imu_enu_msg);
 		// [pub_enu]
 	}
