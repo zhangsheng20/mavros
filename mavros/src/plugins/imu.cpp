@@ -182,8 +182,7 @@ private:
 		tf::vectorEigenToMsg(linear_accel_vec_flu, imu_enu_msg->linear_acceleration);
 		tf::vectorEigenToMsg(linear_accel_vec_frd, imu_ned_msg->linear_acceleration);
 
-		// Pass ENU msg covariances
-		imu_enu_msg->orientation_covariance = orientation_cov;
+		// Pass ENU msg covariances		imu_enu_msg->orientation_covariance = orientation_cov;
 		imu_enu_msg->angular_velocity_covariance = angular_velocity_cov;
 		imu_enu_msg->linear_acceleration_covariance = linear_acceleration_cov;
 
@@ -216,6 +215,13 @@ private:
 		 *  @snippet src/plugins/imu.cpp pub_enu
 		 */
 		// [pub_enu]
+
+		imu_enu_msg->header.frame_id="imu_link";
+		
+		imu_enu_msg->angular_velocity_covariance.elems[0]=0;
+		imu_enu_msg->linear_acceleration_covariance.elems[0]=0;
+		imu_enu_msg->orientation_covariance.elems[0]=0;
+		imu_enu_msg->linear_acceleration.z=9.8;
 		imu_pub.publish(imu_enu_msg);
 		// [pub_enu]
 	}
